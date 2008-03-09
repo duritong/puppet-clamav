@@ -72,6 +72,9 @@ class clamav::gentoo inherits clamav::base {
         refreshonly => true,
     }
     #conf.d file if needed
+    Service[clamd]{
+        require +> File["/etc/conf.d/clamd"],
+    }
     file { "/etc/conf.d/clamd":
         owner => "root",
         group => "0",
