@@ -18,10 +18,11 @@ class clamav::base {
         ensure => installed,
     }
 
-    service{clamav:
+    service{clamd:
         ensure => running,
         enable => true,
         hasstatus => true,
+        require => Package[clamav],
     }
 
     file{'/etc/clamd.conf':
