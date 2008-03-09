@@ -71,4 +71,16 @@ class clamav::gentoo inherits clamav::base {
         command => 'gpasswd -a clamav amavis',
         refreshonly => true,
     }
+    #conf.d file if needed
+    file { "/etc/conf.d/clamd":
+        owner => "root",
+        group => "0",
+        mode  => 644,
+        ensure => present,
+        source => [
+            "puppet://$server/dist/clamav/conf.d/${fqdn}/clamd",
+            "puppet://$server/dist/clamav/conf.d/clamd",
+            "puppet://$server/clamav/conf.d/clamd"
+        ]
+    }
 }
