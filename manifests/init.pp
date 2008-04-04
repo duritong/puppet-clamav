@@ -30,10 +30,10 @@ class clamav::base {
     }
 
     file{'/etc/clamd.conf':
-        source => [ "puppet://$server/dist/clamav/${fqdn}/clamd.conf",
-                    "puppet://$server/dist/clamav/clamd.conf.${operatingsystem}.${lsbdistcodename}",
-                    "puppet://$server/dist/clamav/clamd.conf.${operatingsystem}",
-                    "puppet://$server/dist/clamav/clamd.conf",
+        source => [ "puppet://$server/files/clamav/${fqdn}/clamd.conf",
+                    "puppet://$server/files/clamav/clamd.conf.${operatingsystem}.${lsbdistcodename}",
+                    "puppet://$server/files/clamav/clamd.conf.${operatingsystem}",
+                    "puppet://$server/files/clamav/clamd.conf",
                     "puppet://$server/clamav/clamd.conf.${operatingsystem}.${lsbdistcodename}",
                     "puppet://$server/clamav/clamd.conf.${operatingsystem}",
                     "puppet://$server/clamav/clamd.conf" ]
@@ -43,10 +43,10 @@ class clamav::base {
         require => Package[clamav],
     }
     file{'/etc/freshclam.conf':
-        source => [ "puppet://$server/dist/clamav/${fqdn}/freshclam.conf",
-                    "puppet://$server/dist/clamav/freshclam.conf.${operatingsystem}.${lsbdistcodename}",
-                    "puppet://$server/dist/clamav/freshclam.conf.${operatingsystem}",
-                    "puppet://$server/dist/clamav/freshclam.conf",
+        source => [ "puppet://$server/files/clamav/${fqdn}/freshclam.conf",
+                    "puppet://$server/files/clamav/freshclam.conf.${operatingsystem}.${lsbdistcodename}",
+                    "puppet://$server/files/clamav/freshclam.conf.${operatingsystem}",
+                    "puppet://$server/files/clamav/freshclam.conf",
                     "puppet://$server/clamav/freshclam.conf.${operatingsystem}.${lsbdistcodename}",
                     "puppet://$server/clamav/freshclam.conf.${operatingsystem}",
                     "puppet://$server/clamav/freshclam.conf" ]
@@ -85,8 +85,8 @@ class clamav::gentoo inherits clamav::base {
         mode  => 644,
         ensure => present,
         source => [
-            "puppet://$server/dist/clamav/conf.d/${fqdn}/clamd",
-            "puppet://$server/dist/clamav/conf.d/clamd",
+            "puppet://$server/files/clamav/conf.d/${fqdn}/clamd",
+            "puppet://$server/files/clamav/conf.d/clamd",
             "puppet://$server/clamav/conf.d/clamd"
         ]
     }
