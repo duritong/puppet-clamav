@@ -34,9 +34,9 @@ class clamav::base {
                     "puppet://$server/files/clamav/clamd.conf.${operatingsystem}.${lsbdistcodename}",
                     "puppet://$server/files/clamav/clamd.conf.${operatingsystem}",
                     "puppet://$server/files/clamav/clamd.conf",
-                    "puppet://$server/clamav/clamd.conf.${operatingsystem}.${lsbdistcodename}",
-                    "puppet://$server/clamav/clamd.conf.${operatingsystem}",
-                    "puppet://$server/clamav/clamd.conf" ]
+                    "puppet://$server/modules/clamav/clamd.conf.${operatingsystem}.${lsbdistcodename}",
+                    "puppet://$server/modules/clamav/clamd.conf.${operatingsystem}",
+                    "puppet://$server/modules/clamav/clamd.conf" ]
         owner => root,
         group => 0,
         mode => 0644,
@@ -47,9 +47,9 @@ class clamav::base {
                     "puppet://$server/files/clamav/freshclam.conf.${operatingsystem}.${lsbdistcodename}",
                     "puppet://$server/files/clamav/freshclam.conf.${operatingsystem}",
                     "puppet://$server/files/clamav/freshclam.conf",
-                    "puppet://$server/clamav/freshclam.conf.${operatingsystem}.${lsbdistcodename}",
-                    "puppet://$server/clamav/freshclam.conf.${operatingsystem}",
-                    "puppet://$server/clamav/freshclam.conf" ]
+                    "puppet://$server/modules/clamav/freshclam.conf.${operatingsystem}.${lsbdistcodename}",
+                    "puppet://$server/modules/clamav/freshclam.conf.${operatingsystem}",
+                    "puppet://$server/modules/clamav/freshclam.conf" ]
         owner => root,
         group => 0,
         mode => 0644,
@@ -87,7 +87,7 @@ class clamav::gentoo inherits clamav::base {
         source => [
             "puppet://$server/files/clamav/conf.d/${fqdn}/clamd",
             "puppet://$server/files/clamav/conf.d/clamd",
-            "puppet://$server/clamav/conf.d/clamd"
+            "puppet://$server/modules/clamav/conf.d/clamd"
         ]
     }
 }
