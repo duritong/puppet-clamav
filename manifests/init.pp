@@ -8,6 +8,7 @@
 class clamav {
     case $operatingsystem {
         gentoo: {include clamav::gentoo}
+        debian,ubuntu: {include clamav::debian}
         default: {include clamav::base}
     }
 }
