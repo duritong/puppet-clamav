@@ -6,8 +6,8 @@ class clamav::centos inherits clamav::base {
   }
 
   Service['clamd']{
-    name => 'clamd.amavisd'
-    hasstatus => true,
+    name => 'clamd.amavisd',
+    hasstatus => true
   }
 
   file{'/etc/sysconfig/freshclam':
@@ -26,15 +26,15 @@ class clamav::centos inherits clamav::base {
     owner => root, group => root, mode => 0600;
   }
 
-  package{'clamav-update'
+  package{'clamav-update':
     ensure => present,
   }
 
   File['/etc/clamd.conf']{
-    ensure => absent,
+    ensure => absent
   }
 
   File['/etc/freshclam.conf']{
-    require +> Package['clamav-update'],
+    require +> Package['clamav-update']
   }
 }
