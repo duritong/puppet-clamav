@@ -1,10 +1,6 @@
 class clamav::centos inherits clamav::base {
   require amavisd-new
 
-  Package['clamd']{
-    name => 'clamav'
-  }
-
   Service['clamd']{
     name => 'clamd.amavisd',
     hasstatus => true
