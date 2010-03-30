@@ -21,4 +21,10 @@ class clamav::gentoo inherits clamav::base {
     ensure => present,
     owner => root, group => 0, mode  => 644;
   }
+  file {'/var/run/clamav':
+    ensure => directory,
+    require => Package['clamav'],
+    before => Service['clamd'],
+    owner => clamav, group => 0, mode => 0755;
+  }
 }

@@ -32,10 +32,4 @@ class clamav::base {
     require => Package['clamav'],
     owner => root, group => 0, mode => 0644,
   }
-  file {'/var/run/clamav':
-    ensure => directory,
-    require => Package['clamav'],
-    before => Service['clamd'],
-    owner => clamav, group => 0, mode => 0755;
-  }
 }
