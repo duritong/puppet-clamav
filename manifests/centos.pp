@@ -27,6 +27,7 @@ class clamav::centos inherits clamav::base {
   }
 
   File['/etc/clamd.conf']{
+    source => undef,
     ensure => absent
   }
 
