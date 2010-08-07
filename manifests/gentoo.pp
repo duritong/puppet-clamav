@@ -14,9 +14,9 @@ class clamav::gentoo inherits clamav::base {
   }
   file { "/etc/conf.d/clamd":
     source => [
-      "puppet://$server/modules/site-clamav/conf.d/${fqdn}/clamd",
-      "puppet://$server/modules/site-clamav/conf.d/clamd",
-      "puppet://$server/modules/clamav/conf.d/clamd"
+      "puppet:///modules/site-clamav/conf.d/${fqdn}/clamd",
+      "puppet:///modules/site-clamav/conf.d/clamd",
+      "puppet:///modules/clamav/conf.d/clamd"
     ],
     ensure => present,
     owner => root, group => 0, mode  => 644;
