@@ -1,5 +1,5 @@
 class clamav::centos inherits clamav::base {
-  require amavisd-new
+  require amavisd_new
 
   file{'/var/run/clamd.amavisd':
     ensure => directory,

@@ -5,7 +5,7 @@
 # this module is part of a whole bunch of modules, please have a look at the exim module
 
 class clamav {
-  case $operatingsystem {
+  case $::operatingsystem {
     gentoo: { include clamav::gentoo }
     debian,ubuntu: { include clamav::debian }
     centos: { include clamav::centos }
