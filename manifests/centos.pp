@@ -4,6 +4,7 @@ class clamav::centos inherits clamav::base {
 
   file{'/var/run/clamd.amavisd':
     ensure  => directory,
+    require => Package['amavisd-new'],
     owner   => amavis,
     group   => 0,
     mode    => '0700';
