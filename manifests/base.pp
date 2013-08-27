@@ -36,6 +36,6 @@ class clamav::base {
       require => Package['clamav'],
       owner   => root,
       group   => 0,
-      mode    => '0644':
+      mode    => '0644';
   }
 }
