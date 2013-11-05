@@ -23,19 +23,19 @@ class clamav::backup_webhosting_scan(
       group   => 0,
       mode    => '0400';
     '/usr/local/backup_webhosting_scan/scan':
-      source  => 'puppet:///modules/clamscan/backup_webhosting_scan/scan',
+      source  => 'puppet:///modules/clamav/backup_webhosting_scan/scan',
       owner   => root,
       group   => 0,
       mode    => '0500';
     '/usr/local/backup_webhosting_scan/scan.config':
-      content => template('clamscan/backup_webhosting_scan/scan.config.erb'),
+      content => template('clamav/backup_webhosting_scan/scan.config.erb'),
       owner   => root,
       group   => 0,
       mode    => '0400';
     $template:
       source  => [
-        'puppet:///modules/site_clamscan/backup_webhosting_scan/scan.template',
-        'puppet:///modules/clamscan/backup_webhosting_scan/scan.template',
+        'puppet:///modules/site_clamav/backup_webhosting_scan/scan.template',
+        'puppet:///modules/clamav/backup_webhosting_scan/scan.template',
       ],
       owner   => root,
       group   => 0,
