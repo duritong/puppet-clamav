@@ -40,8 +40,10 @@ class clamav::backup_webhosting_scan(
       owner   => root,
       group   => 0,
       mode    => '0400';
-    '/etc/cron.weekly/backup_webhosting_scan':
-      ensure  => link,
-      target  => '/usr/local/backup_webhosting_scan/scan';
+    '/etc/cron.d/backup_webhosting_scan':
+      content => "0 5 * * 6 root /usr/local/backup_webhosting_scan/scan\n";
+      owner   => root,
+      group   => 0,
+      mode    => '0400';
   }
 }
