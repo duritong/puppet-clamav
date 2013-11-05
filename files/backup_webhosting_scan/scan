@@ -1,0 +1,34 @@
+#!/bin/bash
+
+. /usr/local/backup_webhosting_scan/scan.config
+
+send_report(){
+  TO=$1
+  FOUND=$2
+  WEBH=$3
+  HOST=$4
+
+  /usr/sbin/sendmail -t -f ${FROM} <<END
+$(eval "echo \"$(cat $TEMPLATE)\"" )
+END
+  
+
+}
+
+for hostdir in $BASE/*; do
+  host=`basename $hostdir`
+  if [ "${host}" != 'lost+found' ] && [ "${host}" != '*' ]; then
+    for webhdir in $hostdir/*; do
+      webh=`basename $webhdir`
+      if [ "${webh}" != '*' ]; then
+        out=$(/usr/bin/clamscan --no-summary --recursive=yes -i $webhdir 2>/dev/null)
+        if [ $? -gt 0 ]; then
+          found=$(echo "${out}" | sed "s@${webhdir}/@@")
+          if [ ! -z "${found}" ]; then
+            send_report "${webh}@${TO_DOMAIN}" "${found}" "${webh}" "${host}"
+          fi
+        fi
+      fi
+    done
+  fi
+done
