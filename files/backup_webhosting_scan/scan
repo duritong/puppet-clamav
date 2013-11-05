@@ -21,7 +21,7 @@ for hostdir in $BASE/*; do
     for webhdir in $hostdir/*; do
       webh=`basename $webhdir`
       if [ "${webh}" != '*' ]; then
-        out=$(/usr/bin/clamscan --no-summary --recursive=yes -i $webhdir 2>/dev/null)
+        out=$(nice -n 15 /usr/bin/clamscan --no-summary --recursive=yes -i $webhdir 2>/dev/null)
         if [ $? -gt 0 ]; then
           found=$(echo "${out}" | sed "s@${webhdir}/@@")
           if [ ! -z "${found}" ]; then
