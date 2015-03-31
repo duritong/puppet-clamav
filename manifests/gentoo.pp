@@ -1,34 +1,6 @@
 # gentoo specific things
 class clamav::gentoo inherits clamav::base {
-  Package[clamav]{
-    category  => 'app-antivirus',
-    notify    => Exec[fix_clamav_group],
-  }
-
-  exec{'fix_clamav_group':
-    command     => 'gpasswd -a clamav amavis',
-    refreshonly => true,
-  }
-  #conf.d file if needed
-  Service['clamd']{
-    require +> File['/etc/conf.d/clamd'],
-  }
-  file {
-    '/etc/conf.d/clamd':
-      source  => [
-        "puppet:///modules/site_clamav/conf.d/${::fqdn}/clamd",
-        'puppet:///modules/site_clamav/conf.d/clamd',
-        'puppet:///modules/clamav/conf.d/clamd',
-      ],
-      owner   => root,
-      group   => 0,
-      mode    => '0644';
-    '/var/run/clamav':
-      ensure  => directory,
-      require => Package['clamav'],
-      before  => Service['clamd'],
-      owner   => clamav,
-      group   => 0,
-      mode    => '0755';
+  Package['clamav']{
+    category => 'app-antivirus',
   }
 }

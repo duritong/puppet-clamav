@@ -8,9 +8,7 @@ class clamav::backup_webhosting_scan(
   $template      = '/usr/local/backup_webhosting_scan/scan.template',
 ) {
 
-  package{'clamav':
-    ensure => present,
-  }
+  include ::clamav
 
   file{
     '/usr/local/backup_webhosting_scan':

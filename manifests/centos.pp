@@ -1,14 +1,9 @@
 # centos specific changes
 class clamav::centos inherits clamav::base {
-  require amavisd_new
-
-  Service['clamd']{
-    name      => 'clamd.amavisd',
-    hasstatus => true,
-  }
-
-  File['/etc/clamd.conf']{
-    source => undef,
-    ensure => absent
+  if versioncmp($::operatingsystemmajrelease,'6') > 0 {
+    package{'clamav-update':
+      ensure => present,
+      before => File_line['enable_freshclam'],
+    }
   }
 }
