@@ -7,7 +7,7 @@ class clamav::centos inherits clamav::base {
     } -> file_line{'enable_freshclam_update':
       line  => '#FRESHCLAM_DELAY=disabled-warn   # REMOVE ME',
       path  => '/etc/sysconfig/freshclam',
-      match => '^(#)?RESHCLAM_DELAY=disabled-warn',
+      match => '^(#)?FRESHCLAM_DELAY=disabled-warn',
     }
   }
 }
