@@ -9,5 +9,12 @@ class clamav::centos inherits clamav::base {
       path  => '/etc/sysconfig/freshclam',
       match => '^(#)?FRESHCLAM_DELAY=disabled-warn',
     }
+    if str2bool($::selinux) {
+      selboolean{
+        'antivirus_use_jit':
+          value      => 'on',
+          persistent => true,
+      }
+    }
   }
 }
