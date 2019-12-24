@@ -6,7 +6,7 @@ class clamav::base {
     line  => '#Example',
     match => '^(#)?Example',
     path  => '/etc/freshclam.conf',
-  } ~> exec{'init-clamv-db':
+  } ~> exec{'init-clamav-db':
     command     => 'freshclam',
     refreshonly => true,
     subscribe   => Package['clamav'],
