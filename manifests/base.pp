@@ -2,11 +2,13 @@
 class clamav::base {
   package{'clamav':
     ensure => installed,
-  }
-  file_line{'enable_freshclam':
+  } -> file_line{'enable_freshclam':
     line    => '#Example',
     match   => '^(#)?Example',
     path    => '/etc/freshclam.conf',
-    require => Package['clamav'],
+  } ~> exec{'init-clamv-db':
+    command     => 'freshclam',
+    refreshonly => true,
+    subscribe   => Package['clamav'],
   }
 }
