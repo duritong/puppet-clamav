@@ -6,7 +6,7 @@ class clamav::centos inherits clamav::base {
     refreshonly => true,
     before      => File_line['enable_freshclam'],
   }
-  if versioncmp($facts['os']['release','major'],'9') < 0 {
+  if versioncmp($facts['os']['release']['major'],'9') < 0 {
     Package['clamav-freshclam']{
       name => 'clamav-update'
     }
