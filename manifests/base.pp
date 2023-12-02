@@ -2,7 +2,8 @@
 class clamav::base {
   package{['clamav','clamav-freshclam']:
     ensure => installed,
-  } ~> exec{'/usr/bin/freshclam --quiet':
+  } ~> exec{'init-clamav-db':
+    command     => '/usr/bin/freshclam --quiet',
     refreshonly => true,
     before      => File_line['enable_freshclam'],
   } -> file_line{'enable_freshclam':
